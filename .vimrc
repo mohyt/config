@@ -169,6 +169,8 @@ if !exists('g:neocomplcache_omni_patterns')
 	let g:neocomplcache_omni_patterns = {}
 endif
 
+let g:Powerline_symbols = 'unicode'
+
 " }}}
 
 "{{{Look and Feel
