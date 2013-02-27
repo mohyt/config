@@ -1,3 +1,10 @@
+" cronos's cool little vimrc
+" adapted for go development (other languages are usable too, ofc)
+"
+" in order to make tagbar work you need to install exuberant-ctags
+"
+" have fun!
+
 " Initialize pathogen
 execute pathogen#infect()
 
@@ -134,26 +141,6 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-"inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -171,16 +158,34 @@ endif
 
 let g:Powerline_symbols = 'unicode'
 
-if &term =~ 'xterm' || &term =~ 'rxvt' || &term =~ 'screen' || &term =~ 'linux' || &term =~ 'gnome'
-	imap <silent> <Esc>OA <Up>
-	imap <silent> <Esc>OB <Down>
-	imap <silent> <Esc>OC <Right>
-	imap <silent> <Esc>OD <Left>
-	imap <silent> <Esc>OH <Home>
-	imap <silent> <Esc>OF <End>
-	imap <silent> <Esc>[5~ <PageUp>
-	imap <silent> <Esc>[6~ <PageDown>
-endif
+" enable tagbar for go
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : '~/.vim/bundle/tagbar/gotags/gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
 
 " }}}
 
@@ -225,6 +230,7 @@ map <Leader>w :call Browser ()<CR>
 
 " Mapping for NerdTree
 nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :TagbarToggle<CR>
 
 " Manage Tabs
 nnoremap <silent> <C-Tab> :tabnext<CR>
@@ -258,6 +264,28 @@ nnoremap <C-l> <C-w>l
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader><space> :noh<cr>
+
+" fix arrow keys in terminal
+if &term =~ 'xterm' || &term =~ 'rxvt' || &term =~ 'screen' || &term =~ 'linux' || &term =~ 'gnome'
+	imap <silent> <Esc>OA <Up>
+	imap <silent> <Esc>OB <Down>
+	imap <silent> <Esc>OC <Right>
+	imap <silent> <Esc>OD <Left>
+	imap <silent> <Esc>OH <Home>
+	imap <silent> <Esc>OF <End>
+	imap <silent> <Esc>[5~ <PageUp>
+	imap <silent> <Esc>[6~ <PageDown>
+endif
+
+" neocomplcache mappings
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 "}}}
 
