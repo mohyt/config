@@ -187,6 +187,9 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
+" w3 offline validator is too slow
+let g:syntastic_html_checkers=['tidy']
+
 " }}}
 
 "{{{Look and Feel
