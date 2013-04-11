@@ -34,4 +34,10 @@ htop/htoprc goes to ~/.config/htop/
 mc/etc/* goes to /etc/mc/
 
 
+5. lightdm
+
+lightdm/lightdm_start.sh goes to /etc
+lightdm/etc/* goes to /etc/lightdm/
+
+
 You might want to merge these with your existing configs if you have those, instead of simply overwriting them
