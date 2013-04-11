@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# autostart script
+#
+
+progs=(volumeicon xscreensaver xfce4-power-manager udisks-glue skype)
+
+for prog in "${progs[@]}"
+do
+    if [ -z "$(pgrep $prog)" ]
+    then
+        $prog &
+    fi
+done
+
+if [ -z "$(pgrep wicd-client)" ]
+then
+    wicd-client -t &
+fi
+
+xset s off &
+xset -dpms &
+
+# Tweaks for awesome
+xsetroot -cursor_name left_ptr &
+
+# tiled wallpaper
+#feh --bg-tile /usr/share/images/linen.png

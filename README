@@ -1,0 +1,37 @@
+Configs backup
+My little configs tuned over time to suit my needs
+
+Plain backups for me, but someone might find these useful.
+
+
+1. vim
+
+All plugins managed by pathogen.
+Go support included.
+
+vim/* goes to ~/
+
+
+2. awesomewm
+
+Heavily modified status bar (including system stats like cpu, ram, swap and hd)
+Slightly modified theme
+You should only use it if you read trough rc.lua and understand all the keybindings, most of them differ from standart ones
+Mod key is Win key
+
+awesomewm/rc.lua goes to /etc/xdg/awesome/
+awesomewm/autostart goes to /etc/autostart (it's a simple script that starts all the stuff i need)
+awesomewm/zenburn/ goes to /usr/local/share/awesome/themes/
+
+
+3. htop
+
+htop/htoprc goes to ~/.config/htop/
+
+
+4. mc
+
+mc/etc/* goes to /etc/mc/
+
+
+You might want to merge these with your existing configs if you have those, instead of simply overwriting them
