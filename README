@@ -32,6 +32,7 @@ htop/htoprc goes to ~/.config/htop/
 4. mc
 
 mc/etc/* goes to /etc/mc/
+mc/mc goes to ~/.config
 
 
 5. lightdm
