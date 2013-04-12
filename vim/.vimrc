@@ -16,31 +16,31 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Restore cursor position to where it was before
-augroup JumpCursorOnEdit
-   au!
-   autocmd BufReadPost *
-            \ if expand("<afile>:p:h") !=? $TEMP |
-            \   if line("'\"") > 1 && line("'\"") <= line("$") |
-            \     let JumpCursorOnEdit_foo = line("'\"") |
-            \     let b:doopenfold = 1 |
-            \     if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
-            \        let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
-            \        let b:doopenfold = 2 |
-            \     endif |
-            \     exe JumpCursorOnEdit_foo |
-            \   endif |
-            \ endif
-   " Need to postpone using "zv" until after reading the modelines.
-   autocmd BufWinEnter *
-            \ if exists("b:doopenfold") |
-            \   exe "normal zv" |
-            \   if(b:doopenfold > 1) |
-            \       exe  "+".1 |
-            \   endif |
-            \   unlet b:doopenfold |
-            \ endif
-augroup END
+"" Restore cursor position to where it was before
+"augroup JumpCursorOnEdit
+   "au!
+   "autocmd BufReadPost *
+            "\ if expand("<afile>:p:h") !=? $TEMP |
+            "\   if line("'\"") > 1 && line("'\"") <= line("$") |
+            "\     let JumpCursorOnEdit_foo = line("'\"") |
+            "\     let b:doopenfold = 1 |
+            "\     if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+            "\        let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+            "\        let b:doopenfold = 2 |
+            "\     endif |
+            "\     exe JumpCursorOnEdit_foo |
+            "\   endif |
+            "\ endif
+   "" Need to postpone using "zv" until after reading the modelines.
+   "autocmd BufWinEnter *
+            "\ if exists("b:doopenfold") |
+            "\   exe "normal zv" |
+            "\   if(b:doopenfold > 1) |
+            "\       exe  "+".1 |
+            "\   endif |
+            "\   unlet b:doopenfold |
+            "\ endif
+"augroup END
 
 "}}}
 
@@ -101,9 +101,6 @@ set incsearch
 set hlsearch
 set gdefault
 
-" Since I use Linux, I want this
-let g:clipbrdDefaultReg = '+'
-
 " When I close a tab, remove the buffer
 set nohidden
 
@@ -123,38 +120,38 @@ set cursorline
 set completeopt=longest,menuone,preview
 
 " neocomplcache stuff
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_prefetch = 1
-let g:neocomplcache_enable_quick_match = 1
-let g:neocomplcache_enable_auto_delimiter = 1
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {'default' : ''}
+"let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_prefetch = 1
+"let g:neocomplcache_enable_quick_match = 1
+"let g:neocomplcache_enable_auto_delimiter = 1
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_enable_smart_case = 1
+"let g:neocomplcache_enable_camel_case_completion = 1
+"let g:neocomplcache_enable_underbar_completion = 1
+"let g:neocomplcache_min_syntax_length = 3
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {'default' : ''}
 
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-	let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+"" Define keyword.
+"if !exists('g:neocomplcache_keyword_patterns')
+	"let g:neocomplcache_keyword_patterns = {}
+"endif
+"let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType go setlocal omnifunc=gocomplete#Complete
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType go setlocal omnifunc=gocomplete#Complete
+
+"if !exists('g:neocomplcache_omni_patterns')
+	"let g:neocomplcache_omni_patterns = {}
+"endif
 
 " autoformat go code on save
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
-endif
 
 let g:Powerline_symbols = 'unicode'
 
@@ -197,39 +194,17 @@ let g:syntastic_html_checkers=['tidy']
 " Favorite Color Scheme
 " set t_Co=256
 colorscheme wombat256
-if has("gui_running")
-   " Remove Toolbar
-   set guioptions-=T
-   set guifont=Terminus\ 9
-endif
 
 "Status line gnarliness
-set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+"set laststatus=2
+"set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 " }}}
-
-"{{{ Functions
-
-"{{{ Open URL in browser
-
-function! Browser ()
-   let line = getline (".")
-   let line = matchstr (line, "http[^   ]*")
-   exec "!iceweasel ".line
-endfunction
-
-"}}}
-
-"}}}
 
 "{{{ Mappings
 
 " Set Leader key
 let mapleader = ","
-
-" Open Url on this line with the browser \w
-map <Leader>w :call Browser ()<CR>
 
 " Mapping for NerdTree
 nnoremap <F2> :NERDTreeToggle<CR>
@@ -281,14 +256,14 @@ if &term =~ 'xterm' || &term =~ 'rxvt' || &term =~ 'screen' || &term =~ 'linux' 
 endif
 
 " neocomplcache mappings
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+"imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"inoremap <expr><C-g> neocomplcache#undo_completion()
+"inoremap <expr><C-l> neocomplcache#complete_common_string()
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y> neocomplcache#close_popup()
+"inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 "}}}
 
