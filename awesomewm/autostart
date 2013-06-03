@@ -3,7 +3,7 @@
 # autostart script
 #
 
-progs=(volumeicon xscreensaver xfce4-power-manager udisks-glue skype)
+progs=(volumeicon cinnamon-screensaver nm-applet xfce4-power-manager udisks-glue skype)
 
 for prog in "${progs[@]}"
 do
@@ -13,10 +13,10 @@ do
     fi
 done
 
-if [ -z "$(pgrep wicd-client)" ]
-then
-    wicd-client -t &
-fi
+#if [ -z "$(pgrep wicd-client)" ]
+#then
+    #wicd-client -t &
+#fi
 
 xset s off &
 xset -dpms &

@@ -407,8 +407,8 @@ shell/.ico
 	Include=image
 
 include/image
-	Open=(feh %f &)
-	View=%view{ascii} feh %f
+	Open=(gthumb %f &)
+	View=(gthumb %f &)
 
 ### Sound files ###
 

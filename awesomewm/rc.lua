@@ -232,8 +232,8 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -267,9 +267,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "s", function () awful.util.spawn("skype") end),
 
     -- halt, reboot
-    awful.key({ modkey, 	  	  }, "Delete", function () awful.util.spawn_with_shell("sudo shutdown -r now") end),
-    awful.key({ modkey, "Shift"   }, "Delete", function () awful.util.spawn_with_shell("sudo shutdown -h now") end),
-    awful.key({ modkey,		  }, "l", function() awful.util.spawn_with_shell("xscreensaver-command -lock") end ),
+    awful.key({ modkey, 	  	  }, "Delete", function () awful.util.spawn_with_shell("gksudo 'shutdown -r now'") end),
+    awful.key({ modkey, "Shift"   }, "Delete", function () awful.util.spawn_with_shell("gksudo 'shutdown -h now'") end),
+    awful.key({ modkey,		  }, "l", function() awful.util.spawn_with_shell("cinnamon-screensaver-command -l") end ),
 
     -- Volume
     awful.key({ modkey, 	  	  }, "minus", function () awful.util.spawn_with_shell("amixer set Master 5%- > /dev/null") end),
@@ -278,10 +278,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "q", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey,           }, "Right",     function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ modkey,           }, "Left",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey, "Shift"   }, "Right",     function () awful.tag.incnmaster( 1)      end),
+    awful.key({ modkey, "Shift"   }, "Left",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 

@@ -8,13 +8,13 @@
 
 -- {{{ Main
 theme = {}
---theme.wallpaper = "/usr/share/images/linen.png"
+theme.wallpaper = "/usr/share/backgrounds/linuxmint-olivia/west_village.jpg"
 -- }}}
 
----- {{{ Styles
---theme.font      = "sans 8"
+-- {{{ Styles
+theme.font      = "sans 8"
 
----- {{{ Colors
+-- {{{ Colors
 theme.fg_normal  = "#A0A0A0"
 theme.fg_focus   = "#E0E0E0"
 theme.fg_urgent  = "#CC9393"
@@ -22,29 +22,29 @@ theme.bg_normal  = "#303030"
 theme.bg_focus   = "#101010"
 theme.bg_urgent  = "#3F3F3F"
 theme.bg_systray = theme.bg_normal
----- }}}
+-- }}}
 
----- {{{ Borders
+-- {{{ Borders
 theme.border_width  = 1
 theme.border_normal = "#3F3F3F"
 theme.border_focus  = "#808080"
 theme.border_marked = "#CC9393"
----- }}}
+-- }}}
 
----- {{{ Titlebars
---theme.titlebar_bg_focus  = "#3F3F3F"
---theme.titlebar_bg_normal = "#3F3F3F"
----- }}}
+-- {{{ Titlebars
+theme.titlebar_bg_focus  = "#3F3F3F"
+theme.titlebar_bg_normal = "#3F3F3F"
+-- }}}
 
----- There are other variable sets
----- overriding the default one when
----- defined, the sets are:
----- [taglist|tasklist]_[bg|fg]_[focus|urgent]
----- titlebar_[normal|focus]
----- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
----- Example:
-----theme.taglist_bg_focus = "#CC9393"
----- }}}
+-- There are other variable sets
+-- overriding the default one when
+-- defined, the sets are:
+-- [taglist|tasklist]_[bg|fg]_[focus|urgent]
+-- titlebar_[normal|focus]
+-- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
+-- Example:
+--theme.taglist_bg_focus = "#CC9393"
+-- }}}
 
 -- {{{ Widgets
 -- You can add as many variables as
